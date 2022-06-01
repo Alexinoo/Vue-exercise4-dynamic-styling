@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Styling</h1>
+    </header>
+    <section id="assignment">
+
+
+      <!-- 1) Fetch the user input and use it as a CSS class -->
+      <!-- The entered class should be added to the below paragraph -->
+
+            <input type="text" v-model="inputClass" />
+            <!-- (available classes: "user1", "user2") -->
+            <p :class="paraClasses">
+              Style me!
+            </p>
+
+      <!-- SOLUTION 1 - Simple one
+      
+        Bind the user input class with a value like inputClass using v-model / @input / v-on directives
+
+        e.g.    <input type="text" v-model="inputClass"/>
+        
+        Bind inputClass with the paragraph
+        e.g.   <p :class="inputClass"> Style me!</p>   
+      -->
+      <!-- SOLUTION 2 - Result of truthy/falsy
+      
+       Use inputClass via v-model to capture userInput
+
+        e.g.    <input type="text" v-model="inputClass"/>
+        
+        check explicitly which class was entered in the paragraph
+        e.g.   <p :class="{ user1 : inputClass=== 'user1' ,  user2 : inputClass=== 'user2' }"> Style me!</p>   
+      -->
+
+
+
+
+
+
+      <button @click="toggleParagraphVisibility">Toggle Paragraph</button>
+      <!-- 2) Use the "visible" and "hidden" classes to show/ hide the above paragraph -->
+      <!-- Clicking the button should toggle between the two options -->
+
+
+            <!-- SOLUTION 1 - QUITE TRICKY
+            
+              -Add an event listener @click = "toggleParagraphVisibility" to the button
+
+              -Add a data property isParagraphVisible and set it to true by default
+
+              -Add a method toggleParagraphVisibility() - that flips paragraphIsVisible property if true to false and vice versa
+
+              -Add computed property paraClasses() and bind it with the paragraph
+
+              -Add logic to paraClasses() that checks whether as an object
+                  1.  user1 == true OR user2 == false n vice versa
+                 2.  visible == true OR hidden == false n vice versa
+              -Toggle the paragraph based on this classes
+            
+            
+            -->
+                  
+
+
+
+
+      <!-- 3) Add dynamic inline styling to the below paragraph and let the user enter a background-color -->
+      <input type="text" v-model="inputBackgroundColor"/>
+      <p v-bind:style="{backgroundColor : inputBackgroundColor }">Style me inline!</p>
+
+
+                <!-- SOLUTION 1 - SIMPLE ONE                            
+                                       
+                              -Add a data property inputBackgroundColor and set it to an empty string
+
+                              - Bind the style attribute and pass an object with keyname as Css property and value as a string
+
+                              N/B:
+                            
+                              -You can use { 'background-color' : 'color-of-your-choice' }
+                              
+                              OR camelCase { backgroundColor : 'color-of-your-choice'  } 
+                            
+                            -->
+    </section>
+  </body>
+</html>
